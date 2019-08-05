@@ -1,6 +1,7 @@
 ---
 layout: post
 categories: [ privacy-policy ]
+image: assets/images/privacy.png
 ---
 ## Privacy Policy
 
