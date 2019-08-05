@@ -3,6 +3,7 @@ layout: post
 title:  "The American People are being held hostage"
 categories: [ American Politics ]
 image: https://images.unsplash.com/photo-1473090826765-d54ac2fdc1eb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2450&q=80
+tags: featured
 ---
 
 Day in and day out the American people are bombarded with articles about politicians calling out the opposition for their lack of cooperation or countless acts of wrongdoing. It seems that politicians have found it more useful for their attacks on the opposition to be more valuable than passing policies to resolve problems.

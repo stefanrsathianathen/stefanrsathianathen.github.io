@@ -2,7 +2,8 @@
 layout: post
 title: Cryptocurrency Report
 image: assets/images/crypto.jpg
-tags: [sticky]
+categories: [ Cryptocurrency ]
+tags: [sticky,featured]
 ---
 
 ### Cryptocurrency Market
