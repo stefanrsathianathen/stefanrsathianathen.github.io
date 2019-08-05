@@ -2,6 +2,7 @@
 layout: post
 title: PasswordGen macos app
 image: assets/images/passwordlogo.png
+categories: [ Projects, Apps ]
 ---
 
 Scared of those hackers getting into your accounts. Fear no longer! Get yourself a safe password using the new and safe password generator app PasswordGen for macos. 

@@ -2,6 +2,7 @@
 layout: post
 title: Speed Colors Release 
 image: assets/images/speedColorsLogo.jpg
+categories: [ Projects, Apps ]
 ---
 
 A fun addicting iOS game. (My first game!)
