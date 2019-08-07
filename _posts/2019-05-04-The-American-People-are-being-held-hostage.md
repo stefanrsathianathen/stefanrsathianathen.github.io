@@ -2,7 +2,7 @@
 layout: post
 title:  "The American People are being held hostage"
 categories: [ American Politics ]
-image: https://images.unsplash.com/photo-1473090826765-d54ac2fdc1eb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2450&q=80
+image: https://images.unsplash.com/photo-1473090826765-d54ac2fdc1eb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1225&q=80
 tags: featured
 ---
 
