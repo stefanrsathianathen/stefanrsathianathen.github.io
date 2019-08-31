@@ -3,7 +3,7 @@ layout: post
 title:  "Market Volatility is nothing to fear"
 categories: [ Market ]
 image: https://images.unsplash.com/photo-1535320903710-d993d3d77d29?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80
-tags: featured
+tags: [featured,sticky]
 ---
 
 With trade war tensions rising, and both the US and China pulling out the big guns investors are left with market swings that will leave many fearing the end of the cycle is near. Investors can rest knowing that these temporary swings are to just temporary. In the long run, these swings will be so minuscule compared to the gains that the market will make during that time. 
