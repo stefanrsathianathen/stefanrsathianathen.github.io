@@ -3,6 +3,7 @@ layout: post
 title:  "ÆLF Review"
 categories: [ Cryptocurrency, Review ]
 image: assets/images/aelf.jpeg
+tags: [featured]
 ---
 ÆLF could solve blockchain scalability issues while increasing transaction speed without jeopardising security. Current leading cryptocurrencies, such as Bitcoin and Ethereum, face scalability issues that they will have to overcome if they wish to continue to grow in use. Recently, network congestions have led to high fees making Bitcoin transactions very costly. As more users enter the network, the high fees associated with this congestion will become the norm making crypto-transactions very inefficient. By utilising side chains, ÆLF will help keep transaction costs low, while allowing transactions to occur swiftly. ÆLF’s technology will help crypto technology scale into the future.
 

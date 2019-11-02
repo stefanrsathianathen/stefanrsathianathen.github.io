@@ -3,6 +3,7 @@ layout: post
 title:  "Chia Network Review"
 categories: [ Cryptocurrency, Review ]
 image: assets/images/bitcoin-mining.png
+tags: [featured]
 ---
 
 ### SUSTAINABILITY MEETS BLOCKCHAIN
