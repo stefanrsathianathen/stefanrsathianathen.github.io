@@ -29,6 +29,18 @@
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
             </a>
         </nav>
+
+        <button id="play-btn" type="button">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.989 3.454a.75.75 0 0 0-.982-.982L2.57 9.977c-.65.26-.616 1.192.05 1.404l7.078 2.25a.75.75 0 0 1 .488.488l2.25 7.077c.212.667 1.144.7 1.404.05z"/></svg>
+            Take a flight
+        </button>
     </main>
+
+    <div id="game-overlay" hidden>
+        <canvas id="game-canvas" aria-label="Paper plane game"></canvas>
+        <button id="game-close" type="button" aria-label="Close game">&times;</button>
+    </div>
+
+    <script src="game.js" defer></script>
 </body>
 </html>

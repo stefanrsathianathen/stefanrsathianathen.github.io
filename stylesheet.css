@@ -117,6 +117,63 @@ h1 {
     height: 20px;
 }
 
+#play-btn {
+    margin-top: 1.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font: 600 0.9rem/1 inherit;
+    font-family: inherit;
+    color: var(--fg);
+    background: transparent;
+    border: 1px dashed var(--muted);
+    border-radius: 999px;
+    padding: 0.65rem 1.15rem;
+    cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+#play-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+#play-btn:hover,
+#play-btn:focus-visible {
+    color: var(--accent);
+    border-color: var(--accent);
+    border-style: solid;
+    transform: translateY(-2px);
+}
+
+#game-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+}
+
+#game-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+}
+
+#game-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--glass-border);
+    background: var(--glass);
+    color: var(--fg);
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
 @media (prefers-reduced-motion: reduce) {
     .links a {
         transition: none;
