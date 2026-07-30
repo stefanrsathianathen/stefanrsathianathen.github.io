@@ -446,6 +446,20 @@ h1 {
     }
 }
 
+.fun-fact {
+    font-size: 0.8rem;
+    color: var(--muted);
+    min-height: 1.2em;
+    text-align: center;
+    letter-spacing: 0.02em;
+    opacity: 1;
+    transition: opacity 0.35s ease;
+}
+
+.fun-fact.fade {
+    opacity: 0;
+}
+
 #game-overlay {
     position: fixed;
     inset: 0;

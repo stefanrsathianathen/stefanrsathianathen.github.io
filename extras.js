@@ -139,3 +139,25 @@
         addEventListener('keydown', dismiss, true);
     }
 })();
+
+// Rotating fun facts under the stats ticker.
+(() => {
+    const FACTS = [
+        '7/7 continents — one through the window \u2744',
+        '50 countries \u00b7 26% of the world',
+        'do-not-travel bingo: 1 of 21 (thanks, Iran)',
+        'crossed the equator 20 times',
+        'smallest: Monaco (2 km\u00b2) \u00b7 newest: Kosovo (b. 2008)',
+    ];
+    const el = document.getElementById('fun-fact');
+    if (!el) return;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let i = 0;
+    el.textContent = FACTS[0];
+    setInterval(() => {
+        i = (i + 1) % FACTS.length;
+        if (reduced) { el.textContent = FACTS[i]; return; }
+        el.classList.add('fade');
+        setTimeout(() => { el.textContent = FACTS[i]; el.classList.remove('fade'); }, 350);
+    }, 5000);
+})();
