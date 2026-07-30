@@ -4,6 +4,7 @@
         { code: 'AU', name: 'Australia', date: 'JUN 2017' },
         { code: 'NZ', name: 'New Zealand', date: 'JUN 2017' },
         { code: 'US', name: 'USA', date: 'JUN 2017' },
+        { code: 'IS', name: 'Iceland', date: '2017' },
         { code: 'CA', name: 'Canada', date: 'JUN 2019' },
         { code: 'HK', name: 'Hong Kong', date: 'OCT 2021' },
         { code: 'DE', name: 'Germany', date: 'DEC 2021' },
@@ -22,6 +23,7 @@
         { code: 'IR', name: 'Iran', date: 'OCT 2023' },
         { code: 'LK', name: 'Sri Lanka', date: 'OCT 2023' },
         { code: 'MV', name: 'Maldives', date: 'OCT 2023' },
+        { code: 'MC', name: 'Monaco', date: '2023' },
         { code: 'BR', name: 'Brazil', date: 'NOV 2023' },
         { code: 'AR', name: 'Argentina', date: 'NOV 2023' },
         { code: 'PE', name: 'Peru', date: 'MAY 2024' },
@@ -42,13 +44,49 @@
         { code: 'MK', name: 'North Macedonia', date: 'JUN 2025' },
         { code: 'FJ', name: 'Fiji', date: 'OCT 2025' },
         { code: 'TW', name: 'Taiwan', date: 'NOV 2025' },
+        { code: 'XK', name: 'Kosovo', date: '2025' },
+        { code: 'BG', name: 'Bulgaria', date: '2025' },
+        { code: 'LI', name: 'Liechtenstein', date: '2025' },
         { code: 'MX', name: 'Mexico', date: 'JUN 2026' },
     ];
     // Tiny territories with no path in the low-res map get dot markers (map px coords).
-    const DOTS = { HK: [794, 399], MV: [684, 453] };
+    const DOTS = { HK: [794, 399], MV: [684, 453], MC: [500, 327], LI: [510, 313] };
+
+    const PHOTOS = {
+        Peru: [['photos/machu-picchu.webp', 'Machu Picchu'], ['photos/llama.webp', 'A llama in the Andes']],
+        Denmark: [['photos/nyhavn.webp', 'Nyhavn canal'], ['photos/nyhavn-bikes.webp', 'Cyclists in Copenhagen']],
+        Netherlands: [['photos/tulips.webp', 'Red tulips at Keukenhof']],
+        Jordan: [['photos/petra.webp', 'The Treasury, Petra'], ['photos/petra-night.webp', 'Petra by candlelight'], ['photos/camel.webp', 'Camel in Wadi Rum']],
+        Canada: [['photos/maligne-lake.webp', 'Maligne Lake boathouse']],
+        Taiwan: [['photos/wok-fire.webp', 'Street cook, flaming wok']],
+        USA: [['photos/sequoias.webp', 'Giant sequoias']],
+    };
 
     const slot = document.getElementById('world-map');
     const tip = document.getElementById('map-tip');
+    const pop = document.getElementById('country-pop');
+    const popStamp = document.getElementById('pop-stamp');
+    const popPhotos = document.getElementById('pop-photos');
+    const popClose = document.getElementById('pop-close');
+
+    function showCountry(name, date) {
+        popStamp.innerHTML = '<div class="pop-stamp"><span class="top">ADMITTED</span>'
+            + '<span class="country"></span><span class="date"></span></div>';
+        popStamp.querySelector('.country').textContent = name.toUpperCase();
+        popStamp.querySelector('.date').textContent = date;
+        popPhotos.innerHTML = '';
+        (PHOTOS[name] || []).forEach(([src, alt]) => {
+            const img = new Image();
+            img.src = src;
+            img.alt = alt;
+            popPhotos.appendChild(img);
+        });
+        pop.hidden = false;
+        popClose.focus();
+    }
+
+    popClose.addEventListener('click', () => { pop.hidden = true; });
+    addEventListener('keydown', e => { if (e.key === 'Escape') pop.hidden = true; });
 
     fetch('world.svg')
         .then(r => r.text())
@@ -91,5 +129,9 @@
                 tip.style.top = (e.clientY - r.top - 34) + 'px';
             });
             svg.addEventListener('pointerleave', () => { tip.hidden = true; });
+            svg.addEventListener('click', e => {
+                const t = e.target.closest('[data-name]');
+                if (t) showCountry(t.dataset.name, t.dataset.date);
+            });
         });
 })();

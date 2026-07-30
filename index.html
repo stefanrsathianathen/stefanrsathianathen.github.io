@@ -44,19 +44,47 @@
         <div id="world-map" aria-label="Map of countries I have visited">
             <div id="map-tip" role="status" hidden></div>
         </div>
-        <p class="map-stats"><strong>42</strong> countries &middot; <strong>217</strong> flights</p>
-        <button id="passport-btn" type="button" aria-label="Open my passport">
-            <span class="pp-cover-emblem">&#10047;</span>
-            <span class="pp-cover-title">PASSPORT</span>
-            <span class="pp-cover-sub">stamps &middot; tap to open</span>
-        </button>
+        <p class="map-stats"><strong>47</strong> countries &middot; <strong>217</strong> flights</p>
+        <div id="country-pop" hidden>
+            <button id="pop-close" type="button" aria-label="Close">&times;</button>
+            <div id="pop-stamp"></div>
+            <div id="pop-photos"></div>
+        </div>
     </section>
     </main>
 
-    <div id="passport-overlay" hidden>
-        <div id="passport-book" role="region" aria-label="Travel passport, click to flip pages"></div>
-        <button id="passport-close" type="button" aria-label="Close passport">&times;</button>
-    </div>
+    <section class="strip" aria-label="Travel photos">
+        <div class="strip-marquee">
+            <div class="strip-track">
+                <img src="photos/petra.webp" alt="The Treasury at Petra, Jordan">
+                <img src="photos/llama.webp" alt="A llama in the Andes">
+                <img src="photos/nyhavn.webp" alt="Nyhavn canal, Copenhagen">
+                <img src="photos/desert-silhouette.webp" alt="Silhouette on a desert rock at dusk">
+                <img src="photos/wok-fire.webp" alt="Street cook with a flaming wok">
+                <img src="photos/maligne-lake.webp" alt="Maligne Lake boathouse, Canadian Rockies">
+                <img src="photos/petra-night.webp" alt="Petra by candlelight">
+                <img src="photos/machu-picchu.webp" alt="Machu Picchu">
+                <img src="photos/tulips.webp" alt="Red tulips in the Netherlands">
+                <img src="photos/nyhavn-bikes.webp" alt="Cyclists framed by an archway, Copenhagen">
+                <img src="photos/camel.webp" alt="A camel in Wadi Rum, Jordan">
+                <img src="photos/sequoias.webp" alt="Looking up at giant sequoias">
+            </div>
+            <div class="strip-track" aria-hidden="true">
+                <img src="photos/petra.webp" alt="">
+                <img src="photos/llama.webp" alt="">
+                <img src="photos/nyhavn.webp" alt="">
+                <img src="photos/desert-silhouette.webp" alt="">
+                <img src="photos/wok-fire.webp" alt="">
+                <img src="photos/maligne-lake.webp" alt="">
+                <img src="photos/petra-night.webp" alt="">
+                <img src="photos/machu-picchu.webp" alt="">
+                <img src="photos/tulips.webp" alt="">
+                <img src="photos/nyhavn-bikes.webp" alt="">
+                <img src="photos/camel.webp" alt="">
+                <img src="photos/sequoias.webp" alt="">
+            </div>
+        </div>
+    </section>
 
     <div id="game-overlay" hidden>
         <canvas id="game-canvas" aria-label="Paper plane game"></canvas>
@@ -64,7 +92,6 @@
     </div>
 
     <script src="game.js" defer></script>
-    <script src="passport.js" defer></script>
     <script src="map.js" defer></script>
 </body>
 </html>

@@ -154,16 +154,6 @@ h1 {
     transform: translateY(-2px);
 }
 
-
-/* ---- Passport ---- */
-
-
-
-
-
-
-
-
 .hero {
     display: flex;
     flex-wrap: wrap;
@@ -247,297 +237,156 @@ h1 {
     font-size: 1.1rem;
 }
 
-#passport-btn {
-    display: inline-flex;
-    flex-direction: column;
+
+.strip {
+    width: 100%;
+    overflow: hidden;
+}
+
+.strip-marquee {
+    display: flex;
+    width: max-content;
+    animation: strip-scroll 70s linear infinite;
+}
+
+.strip-marquee:hover {
+    animation-play-state: paused;
+}
+
+@keyframes strip-scroll {
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.strip-track {
+    display: flex;
     align-items: center;
-    gap: 0.15rem;
-    padding: 0.8rem 1.4rem;
-    background: linear-gradient(160deg, #1d3461, #14264a);
-    color: #d7b56d;
-    border: 1px solid #2a4578;
-    border-radius: 10px 14px 14px 10px;
-    cursor: pointer;
-    font-family: inherit;
-    transform: rotate(-1.5deg);
-    box-shadow: 0 10px 24px rgba(10, 25, 45, 0.35);
+    gap: 0.9rem;
+    padding: 1rem 0.45rem;
+    width: max-content;
+}
+
+.strip img {
+    height: 150px;
+    width: auto;
+    border-radius: 12px;
+    border: 3px solid rgba(255, 255, 255, 0.85);
+    box-shadow: 0 10px 26px rgba(10, 25, 45, 0.28);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-#passport-btn:hover,
-#passport-btn:focus-visible {
-    transform: rotate(0deg) translateY(-3px);
-    box-shadow: 0 16px 34px rgba(10, 25, 45, 0.45);
+.strip img:nth-child(odd) {
+    transform: rotate(-1.6deg);
 }
 
-.pp-cover-emblem {
-    font-size: 1.1rem;
-    line-height: 1;
+.strip img:nth-child(even) {
+    transform: rotate(1.4deg);
 }
 
-.pp-cover-title {
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.35em;
-    text-indent: 0.35em;
+.strip img:hover {
+    transform: rotate(0deg) scale(1.35);
+    box-shadow: 0 18px 44px rgba(10, 25, 45, 0.4);
+    z-index: 2;
+    position: relative;
 }
 
-.pp-cover-sub {
-    font-size: 0.6rem;
-    color: #9db1d6;
-    letter-spacing: 0.08em;
-}
-
-#passport-overlay[hidden] {
+#country-pop[hidden] {
     display: none;
 }
 
-#passport-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 20;
-    background: rgba(8, 15, 28, 0.55);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-}
-
-#passport-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid var(--glass-border);
-    background: var(--glass);
-    color: var(--fg);
-    font-size: 1.4rem;
-    line-height: 1;
-    cursor: pointer;
-}
-
-#passport-book {
-    position: relative;
-    width: min(94vw, 740px);
-    aspect-ratio: 10 / 6.6;
-    perspective: 2400px;
-    cursor: pointer;
-    filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.45));
-}
-
-.pp-collage {
-    justify-content: space-evenly;
-}
-
-.pp-collage .pp-collage-0 { align-self: flex-start; margin-left: 8%; }
-.pp-collage .pp-collage-1 { align-self: flex-end; margin-right: 6%; }
-.pp-collage .pp-collage-2 { align-self: center; }
-
-.pp-base,
-.pp-leaf {
-    position: absolute;
-    top: 0;
-    width: 50%;
-    height: 100%;
-}
-
-.pp-base-left { left: 0; }
-.pp-base-right,
-.pp-leaf { left: 50%; }
-
-.pp-leaf {
-    transform-style: preserve-3d;
-    transform-origin: left center;
-    transition: transform 0.6s cubic-bezier(0.4, 0.05, 0.3, 1);
-}
-
-.pp-leaf.flipped {
-    transform: rotateY(-180deg);
-}
-
-.pp-face {
+#country-pop {
     position: absolute;
     inset: 0;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-}
-
-.pp-back {
-    transform: rotateY(180deg);
-}
-
-.pp-page {
-    position: absolute;
-    inset: 0;
+    z-index: 5;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.6rem;
-    overflow: hidden;
-    padding: clamp(0.8rem, 3vw, 1.6rem);
-    background:
-        radial-gradient(ellipse at 20% 10%, rgba(120, 150, 200, 0.14), transparent 55%),
-        radial-gradient(ellipse at 85% 90%, rgba(200, 140, 120, 0.12), transparent 55%),
-        repeating-radial-gradient(circle at 50% 120%, transparent 0 9px, rgba(90, 120, 170, 0.05) 9px 10px),
-        #f3ecdc;
-    color: #2c3547;
+    gap: 0.9rem;
+    border-radius: 24px;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    padding: 1.5rem;
 }
 
-.pp-base-left .pp-page,
-.pp-back .pp-page {
-    border-radius: 14px 3px 3px 14px;
-    box-shadow: inset -14px 0 22px -16px rgba(60, 50, 30, 0.55);
+#pop-close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid var(--glass-border);
+    background: transparent;
+    color: var(--fg);
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
 }
 
-.pp-base-right .pp-page,
-.pp-front .pp-page {
-    border-radius: 3px 14px 14px 3px;
-    box-shadow: inset 14px 0 22px -16px rgba(60, 50, 30, 0.55);
-}
-
-.pp-print {
-    background: #fff;
-    padding: 5px 5px 14px;
-    box-shadow: 0 6px 16px rgba(40, 40, 60, 0.3);
-    transform: rotate(-2.5deg);
-    max-width: 82%;
-}
-
-.pp-print img {
-    display: block;
-    width: 100%;
-    max-height: 30vh;
-    object-fit: cover;
-}
-
-.pp-photos:has(.pp-print-1) .pp-print img {
-    max-height: 20vh;
-}
-
-.pp-photos .pp-print-0:has(~ .pp-print-1) {
-    max-width: 58%;
-}
-
-.pp-photos .pp-print-1 {
-    transform: rotate(2.5deg);
-    max-width: 55%;
-    margin-top: -6%;
-    margin-left: 18%;
-}
-
-.pp-caption {
-    font-size: clamp(0.6rem, 1.6vw, 0.8rem);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #6d7890;
-}
-
-.pp-stamppage {
-    gap: 1rem;
-}
-
-.pp-stamp {
+.pop-stamp {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.15rem;
-    padding: clamp(0.6rem, 2vw, 1rem) clamp(1rem, 3vw, 1.7rem);
-    border: 3px double currentColor;
+    padding: 0.7rem 1.5rem;
+    border: 3px double var(--map-visited);
+    color: var(--map-visited);
     border-radius: 50% / 42%;
-    transform: rotate(-7deg);
-    opacity: 0.82;
-    mix-blend-mode: multiply;
+    transform: rotate(-5deg);
     text-align: center;
 }
 
-.pp-stamp-top {
-    font-size: clamp(0.5rem, 1.4vw, 0.65rem);
+.pop-stamp .top {
+    font-size: 0.55rem;
     letter-spacing: 0.4em;
     text-indent: 0.4em;
 }
 
-.pp-stamp-country {
-    font-size: clamp(1rem, 3.2vw, 1.6rem);
+.pop-stamp .country {
+    font-size: 1.25rem;
     font-weight: 800;
-    letter-spacing: 0.18em;
-    text-indent: 0.18em;
+    letter-spacing: 0.14em;
+    text-indent: 0.14em;
 }
 
-.pp-stamp-date {
-    font-size: clamp(0.6rem, 1.7vw, 0.8rem);
+.pop-stamp .date {
+    font-size: 0.7rem;
     letter-spacing: 0.28em;
     text-indent: 0.28em;
 }
 
-.pp-extra {
-    transform: rotate(3deg);
-    max-width: 52%;
-}
-
-.pp-id-label,
-.pp-intro-title {
-    font-size: clamp(0.7rem, 2vw, 0.95rem);
-    letter-spacing: 0.3em;
-    text-indent: 0.3em;
-    text-transform: uppercase;
-    color: #6d7890;
-}
-
-.pp-id-photo {
-    max-width: 34%;
-    transform: rotate(-2deg);
-}
-
-.pp-id-name {
-    font-size: clamp(0.8rem, 2.4vw, 1.05rem);
-    font-weight: 700;
-    letter-spacing: 0.12em;
-}
-
-.pp-id-row {
-    font-size: clamp(0.6rem, 1.7vw, 0.8rem);
-    color: #4a5670;
-}
-
-.pp-intro-sub {
-    font-size: clamp(0.8rem, 2.2vw, 1rem);
-    font-weight: 600;
-}
-
-.pp-intro-hint {
-    font-size: clamp(0.7rem, 1.8vw, 0.85rem);
-    color: #6d7890;
-}
-
-.pp-ig-link {
+#pop-photos {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     gap: 0.7rem;
-    color: #2c3547;
-    text-decoration: none;
-    font-size: clamp(0.8rem, 2.2vw, 1rem);
-    text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.pp-ig-link svg {
-    width: clamp(28px, 6vw, 40px);
-    height: clamp(28px, 6vw, 40px);
+#pop-photos img {
+    height: 110px;
+    width: auto;
+    border-radius: 10px;
+    border: 3px solid rgba(255, 255, 255, 0.85);
+    box-shadow: 0 8px 20px rgba(10, 25, 45, 0.3);
 }
 
-.pp-ig-link:hover {
-    color: #1d5fd6;
-}
+#pop-photos img:nth-child(odd) { transform: rotate(-2deg); }
+#pop-photos img:nth-child(even) { transform: rotate(2deg); }
 
+.map-panel {
+    position: relative;
+}
 
 @media (prefers-reduced-motion: reduce) {
-    .pp-leaf {
-        transition: none;
+    .strip-marquee {
+        animation: none;
+    }
+    .strip {
+        overflow-x: auto;
     }
 }
 
