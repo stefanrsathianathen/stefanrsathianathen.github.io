@@ -205,6 +205,12 @@ h1 {
     fill: var(--accent);
 }
 
+#world-map .flyover-mark {
+    fill: var(--fg);
+    opacity: 0.75;
+    cursor: pointer;
+}
+
 #world-map .visited-dot {
     fill: var(--map-visited);
     stroke: rgba(255, 255, 255, 0.8);

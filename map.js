@@ -72,8 +72,8 @@
     const popPhotos = document.getElementById('pop-photos');
     const popClose = document.getElementById('pop-close');
 
-    function showCountry(name, date) {
-        popStamp.innerHTML = '<div class="pop-stamp"><span class="top">ADMITTED</span>'
+    function showCountry(name, date, label) {
+        popStamp.innerHTML = '<div class="pop-stamp"><span class="top">' + (label || 'ADMITTED') + '</span>'
             + '<span class="country"></span><span class="date"></span></div>';
         popStamp.querySelector('.country').textContent = name.toUpperCase();
         popStamp.querySelector('.date').textContent = date;
@@ -121,6 +121,18 @@
                 svg.appendChild(c);
             }
 
+            const ant = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            ant.textContent = '\u2744';
+            ant.setAttribute('x', 700);
+            ant.setAttribute('y', 648);
+            ant.setAttribute('font-size', '13');
+            ant.classList.add('flyover-mark');
+            ant.dataset.name = 'Antarctica';
+            ant.dataset.date = 'JAN 2021';
+            ant.dataset.label = 'OVERFLOWN';
+            ant.dataset.tip = 'Antarctica — flown over JAN 2021 (QF scenic flight)';
+            svg.appendChild(ant);
+
             const b = svg.getBBox();
             svg.setAttribute('viewBox', `${b.x} ${b.y} ${b.width} ${b.height}`);
             svg.removeAttribute('width');
@@ -130,7 +142,7 @@
                 const t = e.target.closest('[data-name]');
                 if (!t) { tip.hidden = true; return; }
                 tip.hidden = false;
-                tip.textContent = `${t.dataset.name} — first visited ${t.dataset.date}`;
+                tip.textContent = t.dataset.tip || `${t.dataset.name} — first visited ${t.dataset.date}`;
                 const r = slot.getBoundingClientRect();
                 tip.style.left = Math.min(e.clientX - r.left + 14, r.width - tip.offsetWidth - 4) + 'px';
                 tip.style.top = (e.clientY - r.top - 34) + 'px';
@@ -138,7 +150,7 @@
             svg.addEventListener('pointerleave', () => { tip.hidden = true; });
             svg.addEventListener('click', e => {
                 const t = e.target.closest('[data-name]');
-                if (t) showCountry(t.dataset.name, t.dataset.date);
+                if (t) showCountry(t.dataset.name, t.dataset.date, t.dataset.label);
             });
 
             initFlights(svg, b);

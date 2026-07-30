@@ -32,6 +32,7 @@ window.FLIGHT_DATA = {
     ],
     // IATA -> [lon, lat]
     airports: {
+        ANT: [77.0, -68.0], // Antarctica overfly waypoint
         AEP: [-58.4, -34.6], AGR: [77.96, 27.16], AKL: [174.79, -37.01], ALA: [77.04, 43.35], AMM: [35.99, 31.72], AMS: [4.76, 52.31],
         ATL: [-84.43, 33.64], AUS: [-97.67, 30.19], BCN: [2.08, 41.3], BEG: [20.31, 44.82], BLR: [77.71, 13.2], BNE: [153.12, -27.38],
         BUD: [19.26, 47.44], CDG: [2.55, 49.01], CHC: [172.53, -43.49], CMB: [79.88, 7.18], CNS: [145.76, -16.89], CPH: [12.66, 55.62],
@@ -49,11 +50,11 @@ window.FLIGHT_DATA = {
         WAW: [20.97, 52.17], WLG: [174.81, -41.33], YUL: [-73.74, 45.47], YYC: [-114.01, 51.13], YYZ: [-79.63, 43.68], ZRH: [8.55, 47.46],
     },
     stats: {
-        totalKm: 731853,
-        totalHours: 914,
-        flights: 216,
+        totalKm: 741853, // includes ~10,000 km Antarctica scenic flight
+        totalHours: 927,
+        flights: 217,
         countries: 50,
-        earthCircumnavigations: 18.3,
+        earthCircumnavigations: 18.5,
         longestFlight: { from: 'SFO', to: 'BLR', km: 13987 },
         topAirport: { code: 'SFO', visits: 76 },
     },
