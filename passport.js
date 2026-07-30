@@ -18,10 +18,7 @@
           photos: [['photos/sequoias.webp', 'Giant sequoias']] },
     ];
 
-    const overlay = document.getElementById('passport-overlay');
     const book = document.getElementById('passport-book');
-    const openBtn = document.getElementById('passport-btn');
-    const closeBtn = document.getElementById('passport-close');
 
     function el(tag, cls, html) {
         const n = document.createElement(tag);
@@ -136,20 +133,7 @@
         (e.clientX - r.left < r.width / 2) ? prev() : next();
     });
 
-    function open() {
-        overlay.hidden = false;
-        closeBtn.focus();
-    }
-    function close() {
-        overlay.hidden = true;
-        openBtn.focus();
-    }
-    openBtn.addEventListener('click', open);
-    closeBtn.addEventListener('click', close);
-    overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
     addEventListener('keydown', e => {
-        if (overlay.hidden) return;
-        if (e.key === 'Escape') close();
         if (e.key === 'ArrowRight') next();
         if (e.key === 'ArrowLeft') prev();
     });

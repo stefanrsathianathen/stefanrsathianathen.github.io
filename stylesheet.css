@@ -151,73 +151,45 @@ h1 {
 
 /* ---- Passport ---- */
 
-#passport-btn {
-    margin-top: 1rem;
-    margin-left: 0.75rem;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.15rem;
-    padding: 0.8rem 1.4rem;
-    background: linear-gradient(160deg, #1d3461, #14264a);
-    color: #d7b56d;
-    border: 1px solid #2a4578;
-    border-radius: 10px 14px 14px 10px;
-    cursor: pointer;
-    font-family: inherit;
-    transform: rotate(2deg);
-    box-shadow: 0 10px 24px rgba(10, 25, 45, 0.35);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
 
-#passport-btn:hover,
-#passport-btn:focus-visible {
-    transform: rotate(0deg) translateY(-3px);
-    box-shadow: 0 16px 34px rgba(10, 25, 45, 0.45);
-}
 
-.pp-cover-emblem {
-    font-size: 1.1rem;
-    line-height: 1;
-}
 
-.pp-cover-title {
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.35em;
-    text-indent: 0.35em;
-}
 
-.pp-cover-sub {
-    font-size: 0.6rem;
-    color: #9db1d6;
-    letter-spacing: 0.08em;
-}
 
-#passport-overlay[hidden] {
-    display: none;
-}
 
-#passport-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 20;
-    background: rgba(8, 15, 28, 0.55);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+
+.hero {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    padding: 1rem;
+    gap: clamp(2rem, 4vw, 4rem);
+    padding: 0 1.25rem;
+    max-width: 1200px;
+}
+
+.passport-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.passport-hint {
+    font-size: 0.8rem;
+    color: #e8eef6;
+    text-shadow: 0 1px 8px rgba(10, 20, 35, 0.7);
+    letter-spacing: 0.04em;
 }
 
 #passport-book {
     position: relative;
-    width: min(94vw, 740px);
+    width: min(92vw, 620px);
     aspect-ratio: 10 / 6.6;
     perspective: 2400px;
     cursor: pointer;
     filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.45));
+    transform: rotate(1.2deg);
 }
 
 .pp-base,
@@ -417,20 +389,6 @@ h1 {
     color: #1d5fd6;
 }
 
-#passport-close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    border: 1px solid var(--glass-border);
-    background: var(--glass);
-    color: var(--fg);
-    font-size: 1.4rem;
-    line-height: 1;
-    cursor: pointer;
-}
 
 @media (prefers-reduced-motion: reduce) {
     .pp-leaf {

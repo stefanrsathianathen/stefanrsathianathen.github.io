@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
-    <main class="card">
+    <main class="hero">
+    <section class="card">
         <img class="avatar" src="pfp.jpeg" alt="Stefan Sathianathen" width="120" height="120">
         <h1>Stefan Sathianathen</h1>
         <p class="tagline">Founding Member of Technical Staff&nbsp;@&nbsp;Infinite</p>
@@ -37,18 +38,13 @@
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.989 3.454a.75.75 0 0 0-.982-.982L2.57 9.977c-.65.26-.616 1.192.05 1.404l7.078 2.25a.75.75 0 0 1 .488.488l2.25 7.077c.212.667 1.144.7 1.404.05z"/></svg>
             Take a flight
         </button>
+    </section>
 
-        <button id="passport-btn" type="button" aria-label="Open my travel passport">
-            <span class="pp-cover-emblem">&#10047;</span>
-            <span class="pp-cover-title">PASSPORT</span>
-            <span class="pp-cover-sub">travel log &middot; tap to open</span>
-        </button>
+    <section class="passport-panel">
+        <div id="passport-book" role="region" aria-label="Travel passport, click or use arrow keys to flip pages"></div>
+        <p class="passport-hint">my travel log &mdash; click the pages to flip</p>
+    </section>
     </main>
-
-    <div id="passport-overlay" hidden>
-        <div id="passport-book" role="region" aria-label="Travel passport, click to flip pages"></div>
-        <button id="passport-close" type="button" aria-label="Close passport">&times;</button>
-    </div>
 
     <div id="game-overlay" hidden>
         <canvas id="game-canvas" aria-label="Paper plane game"></canvas>
