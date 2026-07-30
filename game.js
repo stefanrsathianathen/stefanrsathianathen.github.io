@@ -6,14 +6,25 @@
     const closeBtn = document.getElementById('game-close');
     const ctx = canvas.getContext('2d');
 
-    const CODES = ['AMS', 'SYD', 'NYC', 'SFO', 'TYO', 'LHR', 'SIN', 'CDG', 'MEL', 'HKG'];
+    // Short stamp labels for every country Stefan has actually visited (see map.js).
+    const COUNTRIES = [
+        'SINGAPORE', 'AUSTRALIA', 'N. ZEALAND', 'USA', 'ICELAND', 'CANADA', 'HONG KONG', 'GERMANY',
+        'UAE', 'HOLLAND', 'TURKEY', 'AZERBAIJAN', 'SPAIN', 'SWITZ.', 'FRANCE',
+        'MOROCCO', 'ITALY', 'PORTUGAL', 'JAPAN', 'QATAR', 'IRAN', 'SRI LANKA',
+        'MALDIVES', 'MONACO', 'BRAZIL', 'ARGENTINA', 'PERU', 'AUSTRIA', 'UK',
+        'UZBEKISTAN', 'KAZAKHSTAN', 'KYRGYZSTAN', 'POLAND', 'CROATIA', 'DENMARK', 'IRELAND',
+        'NORWAY', 'JORDAN', 'INDIA', 'NEPAL', 'HUNGARY', 'SERBIA', 'N. MACEDONIA',
+        'FIJI', 'TAIWAN', 'KOSOVO', 'BULGARIA', 'LIECHT.', 'MEXICO',
+    ];
+    const TOTAL = COUNTRIES.length;
     const dark = matchMedia('(prefers-color-scheme: dark)');
 
     let W, H, dpr, raf = null;
     let state; // 'ready' | 'flying' | 'over'
-    let plane, clouds, stamps, ridges, t, dist, collected, best;
+    let plane, clouds, stamps, ridges, t, dist, collected, pool, best, bestCountries;
 
     best = +(localStorage.getItem('pp-best') || 0);
+    bestCountries = +(localStorage.getItem('pp-best-countries') || 0);
 
     function resize() {
         dpr = Math.min(devicePixelRatio || 1, 2);
@@ -45,6 +56,11 @@
         t = 0;
         dist = 0;
         collected = [];
+        pool = COUNTRIES.slice();
+        for (let i = pool.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [pool[i], pool[j]] = [pool[j], pool[i]];
+        }
     }
 
     function flap() {
@@ -58,9 +74,9 @@
             const y = H * (0.18 + Math.random() * 0.5);
             clouds.push({ x: W + 80, y, r: 26 + Math.random() * 22 });
         }
-        if (t % 160 === 80) {
+        if (t % 160 === 80 && pool.length) {
             const y = H * (0.15 + Math.random() * 0.55);
-            stamps.push({ x: W + 60, y, code: CODES[Math.floor(Math.random() * CODES.length)], got: false });
+            stamps.push({ x: W + 60, y, code: pool.pop(), got: false });
         }
     }
 
@@ -76,7 +92,11 @@
             clouds.forEach(c => c.x -= speed);
             stamps.forEach(s => s.x -= speed);
             clouds = clouds.filter(c => c.x > -120);
-            stamps = stamps.filter(s => s.x > -80);
+            stamps = stamps.filter(s => {
+                if (s.x > -80) return true;
+                if (!s.got) pool.unshift(s.code); // missed — back into the deck
+                return false;
+            });
 
             for (const c of clouds) {
                 if (Math.hypot(c.x - plane.x, c.y - plane.y) < c.r + 12) return gameOver();
@@ -96,6 +116,8 @@
         state = 'over';
         best = Math.max(best, Math.round(dist));
         localStorage.setItem('pp-best', best);
+        bestCountries = Math.max(bestCountries, collected.length);
+        localStorage.setItem('pp-best-countries', bestCountries);
     }
 
     function drawPlane() {
@@ -159,6 +181,8 @@
             ctx.beginPath(); ctx.arc(0, 0, 17, 0, 7); ctx.fill(); ctx.stroke();
             ctx.fillStyle = '#c2483b';
             ctx.font = 'bold 9px system-ui, sans-serif';
+            const w = ctx.measureText(s.code).width;
+            if (w > 28) ctx.font = `bold ${Math.max(5.5, 9 * 28 / w)}px system-ui, sans-serif`;
             ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
             ctx.fillText(s.code, 0, 0.5);
             ctx.restore();
@@ -171,9 +195,12 @@
         ctx.textAlign = 'left'; ctx.textBaseline = 'top';
         ctx.font = '600 15px system-ui, sans-serif';
         ctx.fillText(`${Math.round(dist)} km`, 20, 18);
-        if (collected.length) {
-            ctx.font = '12px system-ui, sans-serif';
-            ctx.fillText(collected.join(' · '), 20, 40);
+        ctx.font = '12px system-ui, sans-serif';
+        ctx.fillText(`countries: ${collected.length}/${TOTAL}`, 20, 40);
+        if (collected.length >= TOTAL) {
+            ctx.fillText('world complete ✈', 20, 58);
+        } else if (collected.length) {
+            ctx.fillText(collected.slice(-3).join(' · '), 20, 58);
         }
 
         ctx.textAlign = 'center';
@@ -186,9 +213,11 @@
             ctx.font = '700 26px system-ui, sans-serif';
             ctx.fillText(`you flew ${Math.round(dist)} km`, W / 2, H * 0.38);
             ctx.font = '15px system-ui, sans-serif';
-            const visited = collected.length ? `stamps: ${collected.join(' · ')}` : 'no stamps this time';
+            const visited = collected.length
+                ? `you visited ${collected.length}/${TOTAL} countries`
+                : 'no passport stamps this time';
             ctx.fillText(visited, W / 2, H * 0.38 + 34);
-            ctx.fillText(`best: ${best} km`, W / 2, H * 0.38 + 58);
+            ctx.fillText(`best: ${best} km · ${bestCountries}/${TOTAL} countries`, W / 2, H * 0.38 + 58);
             ctx.font = '600 14px system-ui, sans-serif';
             ctx.fillText('tap to fly again · esc to land', W / 2, H * 0.38 + 92);
         }
