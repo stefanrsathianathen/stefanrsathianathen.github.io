@@ -52,7 +52,7 @@ window.FLIGHT_DATA = {
         totalKm: 731853,
         totalHours: 914,
         flights: 216,
-        countries: 49,
+        countries: 50,
         earthCircumnavigations: 18.3,
         longestFlight: { from: 'SFO', to: 'BLR', km: 13987 },
         topAirport: { code: 'SFO', visits: 76 },

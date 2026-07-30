@@ -27,6 +27,7 @@
         { code: 'MC', name: 'Monaco', date: '2023' },
         { code: 'BR', name: 'Brazil', date: 'NOV 2023' },
         { code: 'AR', name: 'Argentina', date: 'NOV 2023' },
+        { code: 'UY', name: 'Uruguay', date: 'NOV 2023' },
         { code: 'PE', name: 'Peru', date: 'MAY 2024' },
         { code: 'AT', name: 'Austria', date: 'JUN 2024' },
         { code: 'GB', name: 'UK', date: 'JUL 2024' },
