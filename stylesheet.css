@@ -148,104 +148,293 @@ h1 {
     transform: translateY(-2px);
 }
 
-.strip {
-    width: 100%;
-    overflow: hidden;
-}
 
-.strip-marquee {
-    display: flex;
-    width: max-content;
-    animation: strip-scroll 70s linear infinite;
-}
+/* ---- Passport ---- */
 
-.strip-marquee:hover {
-    animation-play-state: paused;
-}
-
-@keyframes strip-scroll {
-    to {
-        transform: translateX(-50%);
-    }
-}
-
-.strip-track {
-    display: flex;
+#passport-btn {
+    margin-top: 1rem;
+    margin-left: 0.75rem;
+    display: inline-flex;
+    flex-direction: column;
     align-items: center;
-    gap: 0.9rem;
-    padding: 1rem 0.45rem;
-    width: max-content;
-}
-
-.strip img {
-    height: 150px;
-    width: auto;
-    border-radius: 12px;
-    border: 3px solid rgba(255, 255, 255, 0.85);
-    box-shadow: 0 10px 26px rgba(10, 25, 45, 0.28);
+    gap: 0.15rem;
+    padding: 0.8rem 1.4rem;
+    background: linear-gradient(160deg, #1d3461, #14264a);
+    color: #d7b56d;
+    border: 1px solid #2a4578;
+    border-radius: 10px 14px 14px 10px;
+    cursor: pointer;
+    font-family: inherit;
+    transform: rotate(2deg);
+    box-shadow: 0 10px 24px rgba(10, 25, 45, 0.35);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.strip img:nth-child(odd) {
-    transform: rotate(-1.6deg);
+#passport-btn:hover,
+#passport-btn:focus-visible {
+    transform: rotate(0deg) translateY(-3px);
+    box-shadow: 0 16px 34px rgba(10, 25, 45, 0.45);
 }
 
-.strip img:nth-child(even) {
-    transform: rotate(1.4deg);
+.pp-cover-emblem {
+    font-size: 1.1rem;
+    line-height: 1;
 }
 
-.strip img:hover {
-    transform: rotate(0deg) scale(1.35);
-    box-shadow: 0 18px 44px rgba(10, 25, 45, 0.4);
-    z-index: 2;
+.pp-cover-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    text-indent: 0.35em;
+}
+
+.pp-cover-sub {
+    font-size: 0.6rem;
+    color: #9db1d6;
+    letter-spacing: 0.08em;
+}
+
+#passport-overlay[hidden] {
+    display: none;
+}
+
+#passport-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    background: rgba(8, 15, 28, 0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+#passport-book {
     position: relative;
+    width: min(94vw, 740px);
+    aspect-ratio: 10 / 6.6;
+    perspective: 2400px;
+    cursor: pointer;
+    filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.45));
 }
 
-.strip-more {
+.pp-base,
+.pp-leaf {
+    position: absolute;
+    top: 0;
+    width: 50%;
+    height: 100%;
+}
+
+.pp-base-left { left: 0; }
+.pp-base-right,
+.pp-leaf { left: 50%; }
+
+.pp-leaf {
+    transform-style: preserve-3d;
+    transform-origin: left center;
+    transition: transform 0.6s cubic-bezier(0.4, 0.05, 0.3, 1);
+}
+
+.pp-leaf.flipped {
+    transform: rotateY(-180deg);
+}
+
+.pp-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.pp-back {
+    transform: rotateY(180deg);
+}
+
+.pp-page {
+    position: absolute;
+    inset: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    height: 150px;
-    min-width: 150px;
-    padding: 0 1.25rem;
-    border-radius: 12px;
-    background: var(--glass);
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    color: var(--fg);
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-decoration: none;
+    gap: 0.6rem;
+    overflow: hidden;
+    padding: clamp(0.8rem, 3vw, 1.6rem);
+    background:
+        radial-gradient(ellipse at 20% 10%, rgba(120, 150, 200, 0.14), transparent 55%),
+        radial-gradient(ellipse at 85% 90%, rgba(200, 140, 120, 0.12), transparent 55%),
+        repeating-radial-gradient(circle at 50% 120%, transparent 0 9px, rgba(90, 120, 170, 0.05) 9px 10px),
+        #f3ecdc;
+    color: #2c3547;
+}
+
+.pp-base-left .pp-page,
+.pp-back .pp-page {
+    border-radius: 14px 3px 3px 14px;
+    box-shadow: inset -14px 0 22px -16px rgba(60, 50, 30, 0.55);
+}
+
+.pp-base-right .pp-page,
+.pp-front .pp-page {
+    border-radius: 3px 14px 14px 3px;
+    box-shadow: inset 14px 0 22px -16px rgba(60, 50, 30, 0.55);
+}
+
+.pp-print {
+    background: #fff;
+    padding: 5px 5px 14px;
+    box-shadow: 0 6px 16px rgba(40, 40, 60, 0.3);
+    transform: rotate(-2.5deg);
+    max-width: 82%;
+}
+
+.pp-print img {
+    display: block;
+    width: 100%;
+    max-height: 30vh;
+    object-fit: cover;
+}
+
+.pp-photos:has(.pp-print-1) .pp-print img {
+    max-height: 20vh;
+}
+
+.pp-photos .pp-print-0:has(~ .pp-print-1) {
+    max-width: 58%;
+}
+
+.pp-photos .pp-print-1 {
+    transform: rotate(2.5deg);
+    max-width: 55%;
+    margin-top: -6%;
+    margin-left: 18%;
+}
+
+.pp-caption {
+    font-size: clamp(0.6rem, 1.6vw, 0.8rem);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #6d7890;
+}
+
+.pp-stamppage {
+    gap: 1rem;
+}
+
+.pp-stamp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    padding: clamp(0.6rem, 2vw, 1rem) clamp(1rem, 3vw, 1.7rem);
+    border: 3px double currentColor;
+    border-radius: 50% / 42%;
+    transform: rotate(-7deg);
+    opacity: 0.82;
+    mix-blend-mode: multiply;
     text-align: center;
-    transition: color 0.15s ease, transform 0.2s ease;
 }
 
-.strip-more svg {
-    width: 24px;
-    height: 24px;
+.pp-stamp-top {
+    font-size: clamp(0.5rem, 1.4vw, 0.65rem);
+    letter-spacing: 0.4em;
+    text-indent: 0.4em;
 }
 
-.strip-more:hover {
-    color: var(--accent);
-    transform: translateY(-3px);
+.pp-stamp-country {
+    font-size: clamp(1rem, 3.2vw, 1.6rem);
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-indent: 0.18em;
+}
+
+.pp-stamp-date {
+    font-size: clamp(0.6rem, 1.7vw, 0.8rem);
+    letter-spacing: 0.28em;
+    text-indent: 0.28em;
+}
+
+.pp-extra {
+    transform: rotate(3deg);
+    max-width: 52%;
+}
+
+.pp-id-label,
+.pp-intro-title {
+    font-size: clamp(0.7rem, 2vw, 0.95rem);
+    letter-spacing: 0.3em;
+    text-indent: 0.3em;
+    text-transform: uppercase;
+    color: #6d7890;
+}
+
+.pp-id-photo {
+    max-width: 34%;
+    transform: rotate(-2deg);
+}
+
+.pp-id-name {
+    font-size: clamp(0.8rem, 2.4vw, 1.05rem);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.pp-id-row {
+    font-size: clamp(0.6rem, 1.7vw, 0.8rem);
+    color: #4a5670;
+}
+
+.pp-intro-sub {
+    font-size: clamp(0.8rem, 2.2vw, 1rem);
+    font-weight: 600;
+}
+
+.pp-intro-hint {
+    font-size: clamp(0.7rem, 1.8vw, 0.85rem);
+    color: #6d7890;
+}
+
+.pp-ig-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    color: #2c3547;
+    text-decoration: none;
+    font-size: clamp(0.8rem, 2.2vw, 1rem);
+    text-align: center;
+}
+
+.pp-ig-link svg {
+    width: clamp(28px, 6vw, 40px);
+    height: clamp(28px, 6vw, 40px);
+}
+
+.pp-ig-link:hover {
+    color: #1d5fd6;
+}
+
+#passport-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--glass-border);
+    background: var(--glass);
+    color: var(--fg);
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .strip {
-        overflow-x: auto;
-    }
-    .strip-marquee {
-        animation: none;
-    }
-    .strip img,
-    .strip-more {
+    .pp-leaf {
         transition: none;
-    }
-    .strip img:hover {
-        transform: none;
     }
 }
 
