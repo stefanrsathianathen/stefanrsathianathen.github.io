@@ -150,21 +150,31 @@ h1 {
 
 .strip {
     width: 100%;
-    overflow-x: auto;
-    scrollbar-width: none;
+    overflow: hidden;
 }
 
-.strip::-webkit-scrollbar {
-    display: none;
+.strip-marquee {
+    display: flex;
+    width: max-content;
+    animation: strip-scroll 70s linear infinite;
+}
+
+.strip-marquee:hover {
+    animation-play-state: paused;
+}
+
+@keyframes strip-scroll {
+    to {
+        transform: translateX(-50%);
+    }
 }
 
 .strip-track {
     display: flex;
     align-items: center;
     gap: 0.9rem;
-    padding: 1rem 2rem;
+    padding: 1rem 0.45rem;
     width: max-content;
-    margin: 0 auto;
 }
 
 .strip img {
@@ -224,6 +234,12 @@ h1 {
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .strip {
+        overflow-x: auto;
+    }
+    .strip-marquee {
+        animation: none;
+    }
     .strip img,
     .strip-more {
         transition: none;
