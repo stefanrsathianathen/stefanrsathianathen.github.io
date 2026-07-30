@@ -40,11 +40,23 @@
         </button>
     </section>
 
-    <section class="passport-panel">
-        <div id="passport-book" role="region" aria-label="Travel passport, click or use arrow keys to flip pages"></div>
-        <p class="passport-hint">my travel log &mdash; click the pages to flip</p>
+    <section class="map-panel">
+        <div id="world-map" aria-label="Map of countries I have visited">
+            <div id="map-tip" role="status" hidden></div>
+        </div>
+        <p class="map-stats"><strong>42</strong> countries &middot; <strong>217</strong> flights</p>
+        <button id="passport-btn" type="button" aria-label="Open my passport">
+            <span class="pp-cover-emblem">&#10047;</span>
+            <span class="pp-cover-title">PASSPORT</span>
+            <span class="pp-cover-sub">stamps &middot; tap to open</span>
+        </button>
     </section>
     </main>
+
+    <div id="passport-overlay" hidden>
+        <div id="passport-book" role="region" aria-label="Travel passport, click to flip pages"></div>
+        <button id="passport-close" type="button" aria-label="Close passport">&times;</button>
+    </div>
 
     <div id="game-overlay" hidden>
         <canvas id="game-canvas" aria-label="Paper plane game"></canvas>
@@ -53,5 +65,6 @@
 
     <script src="game.js" defer></script>
     <script src="passport.js" defer></script>
+    <script src="map.js" defer></script>
 </body>
 </html>
